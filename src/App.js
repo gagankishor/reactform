@@ -1,4 +1,4 @@
-import React, { useState ,useEffect } from 'react';
+import React, { useState  } from 'react';
 import axios from 'axios';
 
 import {
@@ -15,20 +15,20 @@ const App = () => {
   const [mobile, setMobile] = useState('');
   const [contacts, setContacts] = useState([]);
   const [editIndex, setEditIndex] = useState(-1);
-  useEffect(() => {
-    fetchContacts();
-  }, []);
+  // useEffect(() => {
+  //   fetchContacts();
+  // }, []);
 
-  const fetchContacts = () => {
-    axios.get('http://localhost:3010/items')
-      .then((response) => {
-        setContacts(response.data);
-      })
-      .catch((error) => {
-        alert(error)
-        console.error('Error fetching contacts:', error);
-      });
-  };
+  // const fetchContacts = () => {
+  //   axios.get('http://localhost:3010/items')
+  //     .then((response) => {
+  //       setContacts(response.data);
+  //     })
+  //     .catch((error) => {
+  //       alert(error)
+  //       console.error('Error fetching contacts:', error);
+  //     });
+  // };
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -59,6 +59,12 @@ const App = () => {
         email: email,
         mobile: mobile,
       };
+      setContacts([...contacts, newContact]);
+  
+          // Reset form fields
+          setName('');
+          setEmail('');
+          setMobile('');
   
       // POST the new contact to the API
       axios.post('http://localhost:3010/items', newContact)
@@ -72,7 +78,7 @@ const App = () => {
           setMobile('');
         })
         .catch((error) => {
-          alert(error)
+          
           console.error('Error adding contact:', error);
         });
         
@@ -103,11 +109,13 @@ const App = () => {
   };
 
   const handleDelete = (index) => {
+    const updatedContacts = contacts.filter((contact) => contact.id !== index);
+    setContacts(updatedContacts);
     axios.delete(`http://localhost:3010/items/${index}`)
       .then(() => {
-        // Remove the contact from the local state
         const updatedContacts = contacts.filter((contact) => contact.id !== index);
         setContacts(updatedContacts);
+        // Remove the contact from the local state
       })
       .catch((error) => {
         alert(error)
