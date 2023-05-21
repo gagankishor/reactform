@@ -4,12 +4,26 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import NotificationProvider from 'use-toast-notification'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
+  <React.StrictMode >
+    <NotificationProvider style={{backgroundColor:"rgb(100,128,128)"}}
+			config={{
+				position: 'top-center',
+				isCloseable: false,
+				showTitle: true,
+				showIcon: true,
+				duration: 8,
+        successColor:'green',
+			}}
+		>
+      <App  />
+    </NotificationProvider>
+    
+    
   </React.StrictMode>
 );
 
