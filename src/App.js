@@ -181,7 +181,7 @@ const App = () => {
   };
 
   return (
-    <div  style={{backgroundColor:"rgb(100,128,128)" ,minHeight :"100vh-auto",marginBottom :"-16px", color:"white"}}>
+    <div  style={{backgroundColor:"rgb(100,128,128)" ,minHeight:"100vh",marginBottom :"-16px", color:"white"}}>
     < Container >
     <div className='pt-5 pb-3'>
       <h2 >Contact Form</h2></div>
